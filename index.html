@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 Market Intelligence Platform</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/utils.js" defer></script>
+    <script src="js/data-loader.js" defer></script>
+    <script src="js/financials.js" defer></script>
+    <script src="js/ml-engine.js" defer></script>
+    <script src="js/charts.js" defer></script>
+    <script src="js/app.js" defer></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+</head>
+<script>
+  console.log("INLINE SCRIPT RUNNING");
+</script>
+<body>
+    <h1 style="color:white">HTML IS LOADING</h1>
+    <!-- Animated Background -->
+    <div class="bg-animation"></div>
+    
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">📊</span>
+                <h1>Market Intelligence <span class="accent">2026</span></h1>
+            </div>
+            <nav class="nav">
+                <button class="nav-btn active" data-section="dashboard">Dashboard</button>
+                <button class="nav-btn" data-section="sectors">Sectors</button>
+                <button class="nav-btn" data-section="stocks">Stocks</button>
+                <button class="nav-btn" data-section="analysis">Deep Analysis</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="section active">
+            <div class="container">
+                <!-- Hero Stats -->
+                <div class="hero-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">🚀</div>
+                        <div class="stat-info">
+                            <h3 class="stat-value" data-count="65">0</h3>
+                            <p class="stat-label">Companies Analyzed</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📈</div>
+                        <div class="stat-info">
+                            <h3 class="stat-value" id="topSectorGrowth">0%</h3>
+                            <p class="stat-label">Top Sector Growth</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">💎</div>
+                        <div class="stat-info">
+                            <h3 class="stat-value" id="undervaluedCount">0</h3>
+                            <p class="stat-label">Undervalued Gems</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">⚠️</div>
+                        <div class="stat-info">
+                            <h3 class="stat-value" id="overvaluedCount">0</h3>
+                            <p class="stat-label">Overvalued Alerts</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Market Overview -->
+                <div class="grid-2">
+                    <div class="card glass">
+                        <h2 class="card-title">📊 Market Pulse</h2>
+                        <canvas id="marketPulseChart"></canvas>
+                    </div>
+                    <div class="card glass">
+                        <h2 class="card-title">🎯 2026 Sector Predictions</h2>
+                        <div id="sectorPredictions" class="predictions-list"></div>
+                    </div>
+                </div>
+
+                <!-- Top Performers -->
+                <div class="card glass">
+                    <h2 class="card-title">⭐ Popular Companies (Top Market Cap)</h2>
+                    <div id="topCompanies" class="companies-grid"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sectors Section -->
+        <section id="sectors" class="section">
+            <div class="container">
+                <h2 class="section-title">🌐 2026 Sector Intelligence</h2>
+                
+                <div class="card glass">
+                    <h3 class="card-title">Geopolitical & Economic Drivers</h3>
+                    <div class="drivers-grid">
+                        <div class="driver-card">
+                            <div class="driver-icon">🤖</div>
+                            <h4>AI Revolution</h4>
+                            <p>75% of companies investing in agentic AI. Semiconductor earnings growth at 26% annually.</p>
+                        </div>
+                        <div class="driver-card">
+                            <div class="driver-icon">🛡️</div>
+                            <h4>Defense Surge</h4>
+                            <p>India's ₹6.81L Cr defense budget. Geopolitical tensions driving ₹4L Cr procurement over 5-7 years.</p>
+                        </div>
+                        <div class="driver-card">
+                            <div class="driver-icon">⚡</div>
+                            <h4>Energy Transition</h4>
+                            <p>Renewable energy sector projected to grow 25%. AI data centers driving power demand.</p>
+                        </div>
+                        <div class="driver-card">
+                            <div class="driver-icon">🌍</div>
+                            <h4>Trade Dynamics</h4>
+                            <p>China-US tensions creating tariff battles. Global GDP growth at 2.8% (Goldman Sachs).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="card glass">
+                        <h3 class="card-title">Sector Performance</h3>
+                        <canvas id="sectorChart"></canvas>
+                    </div>
+                    <div class="card glass">
+                        <h3 class="card-title">Technical Momentum</h3>
+                        <canvas id="momentumChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stocks Section -->
+        <section id="stocks" class="section">
+            <div class="container">
+                <h2 class="section-title">🔍 Stock Explorer</h2>
+                
+                <!-- Filters -->
+                <div class="filters card glass">
+                    <select id="sectorFilter" class="filter-select">
+                        <option value="all">All Sectors</option>
+                    </select>
+                    <select id="riskFilter" class="filter-select">
+                        <option value="all">All Risk Levels</option>
+                        <option value="low">Low Risk</option>
+                        <option value="medium">Medium Risk</option>
+                        <option value="high">High Risk</option>
+                    </select>
+                    <input type="text" id="searchInput" class="search-input" placeholder="Search companies...">
+                </div>
+
+                <!-- Stock Categories -->
+                <div class="stock-categories">
+                    <div class="category-tab active" data-category="all">All Stocks</div>
+                    <div class="category-tab" data-category="undervalued">💎 Undervalued</div>
+                    <div class="category-tab" data-category="overvalued">⚠️ Overvalued</div>
+                    <div class="category-tab" data-category="growth">📈 Growth Leaders</div>
+                    <div class="category-tab" data-category="stable">🛡️ Stable Returns</div>
+                </div>
+
+                <!-- Stocks Grid -->
+                <div id="stocksGrid" class="stocks-grid"></div>
+            </div>
+        </section>
+
+        <!-- Analysis Section -->
+        <section id="analysis" class="section">
+            <div class="container">
+                <h2 class="section-title">📊 Deep Financial Analysis</h2>
+
+
+                <div class="grid-2">
+                    <div class="card glass">
+                        <h3 class="card-title">5-Year Revenue Growth</h3>
+                        <canvas id="revenueGrowthChart"></canvas>
+                    </div>
+                    <div class="card glass">
+                        <h3 class="card-title">Debt-to-Equity Analysis</h3>
+                        <canvas id="debtEquityChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal for Company Details -->
+    <div id="companyModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loader"></div>
+        <p>Loading Market Intelligence...</p>
+    </div>
+
+    <!-- Scripts -->
+    <script src="utils.js"></script>
+    <script src="data-loader.js"></script>
+    <script src="financials.js"></script>
+    <script src="ml-engine.js"></script>
+    <script src="charts.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
