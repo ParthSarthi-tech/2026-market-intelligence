@@ -7,7 +7,7 @@ This project combines **data analysis, financial logic, and interactive visualiz
 ---
 
 ## 🚀 Live Demo
-👉 
+👉 https://stock-market-intelli.netlify.app/
 
 ---
 
